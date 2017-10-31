@@ -7,7 +7,7 @@ y=[-0.65,-0.545,-0.46,-0.375,-0.260,-0.145,0,0.125]        #Adicionar os Valores
 z=[]
 yerr=[]
 
-Sx = Sy = Sx2 = Sy2 = Sxy = Mx = Mx2 = My = Spxy = Sqx = Sqy = Sxx = Syy = r = r2 = ye = Syr = delta = 0   # Variaveis : Sx -> Somatorio de X / Sx2 -> Somatorio de x² / Mx -> Media de x / Mx2 -> Media de X ao Quadrado #
+Sx = Sy = Sx2 = Sy2 = Sxy = Mx = Mx2 = My = Spxy = Sqx = Sqy = Sxx = Syy = r = r2 = ye = Syr = 0   # Variaveis : Sx -> Somatorio de X / Sx2 -> Somatorio de x² / Mx -> Media de x / Mx2 -> Media de X ao Quadrado #
 SPi = SPi2= 0                                                                   #             Sy -> Somatorio de Y / Sy2 -> Somatorio de y² / My -> Media de y / Sxy -> Somatorio de x*y #
 n = len(x)
 Pi=1/((0.005)**2)
@@ -28,7 +28,6 @@ for i in range(n):       # Calculo das Variaveis
     r=Spxy/sqrt(Sqx*Sqy)
     SPi= SPi + Pi*n
     SPi2= SPi2 + ((Pi**2)**n)
-    delta= (SPi*(SPi*(x[i]**2))-((SPi*x[i])**2))
     r2=r**2
 
 b= (Sxy-(n*Mx*My))/(Sx2-(n*Mx2))   #Calculo de a e b.
@@ -39,8 +38,9 @@ for i in range(n):
     Syr = Syr + ((y[i] - a - b*x[i])*(y[i] - a - b*x[i]))
     ye = sqrt((1/(n - 2))*Syr)
     yerr.append(ye)
-    da= sqrt(((ye**2)*SPi)/delta)
-    b= sqrt(((ye**2)*SPi2*(x[i]**2))/delta)
+    delta = (SPi * (SPi * (x[i] ** 2)) - ((SPi*(x[i])**2)))
+    da= sqrt(((yerr[i]**2)*SPi)/(delta))
+    db= sqrt(((yerr[i]**2)*SPi2*(x[i]**2))/(delta))
 
 for i in x:                     #Calculo da reta para os valores de A e B.
     aux= a + b*i
@@ -76,4 +76,4 @@ plt.title("Dilatação do Alcool - t0=26°C")                      # Titulo Prin
 table()                                                         # Chamando função tabela para gera-la
 plt.show()
 
-print (Pi, SPi, SPi2)
+print (delta)

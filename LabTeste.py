@@ -8,7 +8,7 @@ z=[]
 yerr=[]
 Sx = Sy = Sx2 = Sy2 = Sxy = Mx = Mx2 = My = Spxy = Sqx = Sqy = Sxx = Syy = r = r2 = ye = Syr= a= b=0   # Variaveis : Sx -> Somatorio de X / Sx2 -> Somatorio de x² / Mx -> Media de x / Mx2 -> Media de X ao Quadrado #
                                                                                                             #             Sy -> Somatorio de Y / Sy2 -> Somatorio de y² / My -> Media de y / Sxy -> Somatorio de x*y #
-def cal(Sx,Sy,Sxy,Mx,Mx2,My,Spxy,Sqx,Sxx,Syy,r2,ye,Syr):
+def cal(x,y,Sx, Sy, Sx2, Sy2, Sxy,r):
     n = len(x)
     for i in range(n):       # Calculo das Variaveis
         Sx = Sx + x[i]
@@ -31,7 +31,7 @@ def cal(Sx,Sy,Sxy,Mx,Mx2,My,Spxy,Sqx,Sxx,Syy,r2,ye,Syr):
     return
 
 n=len(x)
-#cal(Sx,Sy,Sx2,Sy2,Sxy,Mx,Mx2,My,Spxy,Sqx,Sqy,Sxx,Syy,r,r2,ye,Syr,a,b)
+cal()
 a = My - (b * Mx)
 r2 = r * r
 
